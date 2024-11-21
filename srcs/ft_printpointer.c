@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printpointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 13:02:28 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:50 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 16:14:55 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 16:17:03 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "../printft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printpointer(void *ptr)
 {
-	va_list	args;
-	int	i;
 	int	len;
-
-	i = 0;
 	len = 0;
-	va_start(args, str);
-	while (str[i] != '\0')
+	unsigned long	point;
+	point = (unsigned long)ptr;
+
+	if (ptr == 0)
+		return (ft_printstr("(nil)"));
+	else
 	{
-		if (str[i] == '%')
-		{
-			len += ft_fspecifier(args, str[i + 1]);
-			i++;
-		}
-		else 
-			len += ft_printchar(str[i]);
-		i++;
+		len += ft_printstr("0x");
+		len += ft_printbasedigit(point, 16);
 	}
-	va_end(args);
 	return (len);
+
 }

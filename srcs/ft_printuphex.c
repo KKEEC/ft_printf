@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printuphex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 13:02:28 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:50 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 11:47:11 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 15:58:46 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "../printft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printuphex(unsigned int x)
 {
-	va_list	args;
-	int	i;
-	int	len;
+	int		count;
+	char	*set;
 
-	i = 0;
-	len = 0;
-	va_start(args, str);
-	while (str[i] != '\0')
+	set = "0123456789ABCDEF";
+	if (x < 16)
+		return (ft_printchar(set[x]));
+	else
 	{
-		if (str[i] == '%')
-		{
-			len += ft_fspecifier(args, str[i + 1]);
-			i++;
-		}
-		else 
-			len += ft_printchar(str[i]);
-		i++;
+		count = ft_printuphex(x / 16);
+		return (count + ft_printuphex(x % 16));
 	}
-	va_end(args);
-	return (len);
 }

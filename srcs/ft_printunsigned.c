@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printunsigned.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 13:02:28 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:50 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 11:41:52 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 13:41:03 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "../printft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printunsigned(unsigned long nbr)
 {
-	va_list	args;
-	int	i;
-	int	len;
+	int		count;
+	char	*set;
 
-	i = 0;
-	len = 0;
-	va_start(args, str);
-	while (str[i] != '\0')
+	set = "0123456789";
+	if (nbr == 4294967295)
 	{
-		if (str[i] == '%')
-		{
-			len += ft_fspecifier(args, str[i + 1]);
-			i++;
-		}
-		else 
-			len += ft_printchar(str[i]);
-		i++;
+		write(1, "4294967295", 10);
+		return (10);
 	}
-	va_end(args);
-	return (len);
+	if (nbr < 10)
+	{
+		return (ft_printchar(set[nbr]));
+	}
+	else
+	{
+		count = ft_printunsigned(nbr / 10);
+		return (count + ft_printunsigned(nbr % 10));
+	}
 }

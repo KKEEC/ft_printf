@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 13:02:28 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:50 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 11:32:26 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 13:40:47 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "../printft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printstr(char *str)
 {
-	va_list	args;
 	int	i;
-	int	len;
 
 	i = 0;
-	len = 0;
-	va_start(args, str);
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%')
-		{
-			len += ft_fspecifier(args, str[i + 1]);
-			i++;
-		}
-		else 
-			len += ft_printchar(str[i]);
+		ft_printchar(str[i]);
 		i++;
 	}
-	va_end(args);
-	return (len);
+	return (i);
 }

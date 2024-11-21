@@ -6,19 +6,26 @@
 #    By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 16:55:20 by kkc               #+#    #+#              #
-#    Updated: 2024/11/19 17:02:18 by kkc              ###   ########.fr        #
+#    Updated: 2024/11/21 16:31:16 by kkc              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = printf.a
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = 
+SOURCES = ft_printf.c ./srcs/ft_fspecifier.c\
+	  ./srcs/ft_printbasedigit.c\
+	  ./srcs/ft_printchar.c\
+	  ./srcs/ft_printlowhex.c\
+	  ./srcs/ft_printstr.c\
+	  ./srcs/ft_printunsigned.c\
+	  ./srcs/ft_printuphex.c\
+	  ./srcs/ft_printpointer.c
 
-OBJECTS = $(SOURCES: .c=.o)
+OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
@@ -27,7 +34,7 @@ $(NAME) : $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 clean:
-	@rm -f *.o
+	@rm -f *.o ./srcs/*.o
 
 fclean: clean
 	rm -f $(NAME)

@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printft.c                                       :+:      :+:    :+:   */
+/*   ft_printbasedigit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 13:02:28 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:50 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 11:34:26 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 15:58:05 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "../printft.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printbasedigit(long nbr, int base)
 {
-	va_list	args;
-	int	i;
-	int	len;
+	int		count;
+	char	*digithex;
 
-	i = 0;
-	len = 0;
-	va_start(args, str);
-	while (str[i] != '\0')
+	digithex = "0123456789abcdef";
+	if (nbr < 0)
 	{
-		if (str[i] == '%')
-		{
-			len += ft_fspecifier(args, str[i + 1]);
-			i++;
-		}
-		else 
-			len += ft_printchar(str[i]);
-		i++;
+		ft_printchar('-');
+		return (ft_printbasedigit(-nbr, base) + 1);
 	}
-	va_end(args);
-	return (len);
+	else if (nbr < base)
+		return (ft_printchar(digithex[nbr]));
+	else
+	{
+		count = ft_printbasedigit(nbr / base, base);
+		return (count + ft_printbasedigit(nbr % base, base));
+	}
 }

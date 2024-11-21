@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printlowhex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 17:03:19 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/19 17:07:22 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/21 11:47:11 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 13:40:28 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "../printft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_printlowhex(unsigned int x)
+{
+	int		count;
+	char	*set;
+
+	set = "0123456789abcde";
+	if (x < 16)
+		return (ft_printchar(set[x]));
+	else
+	{
+		count = ft_printlowhex(x / 16);
+		return (count + ft_printlowhex(x % 16));
+	}
+}
