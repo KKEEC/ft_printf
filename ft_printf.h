@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printlowhex.c                                   :+:      :+:    :+:   */
+/*   printft.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 11:47:11 by kkc               #+#    #+#             */
-/*   Updated: 2024/11/21 13:40:28 by kkc              ###   ########.fr       */
+/*   Created: 2024/11/19 17:03:19 by kkc               #+#    #+#             */
+/*   Updated: 2024/11/21 16:14:03 by kkc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printft.h"
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
-int	ft_printlowhex(unsigned int x)
-{
-	int		count;
-	char	*set;
+# include <unistd.h>
+# include <stdarg.h>
 
-	set = "0123456789abcde";
-	if (x < 16)
-		return (ft_printchar(set[x]));
-	else
-	{
-		count = ft_printlowhex(x / 16);
-		return (count + ft_printlowhex(x % 16));
-	}
-}
+int ft_printf(const char *str, ...);
+int	ft_fspecifier(va_list args, const char fspecifier);
+int	ft_printchar(char c);
+int	ft_printstr(char *str);
+int	ft_printbasedigit(long nbr, int base);
+int	ft_printuphex(unsigned int x);
+int	ft_printpointer(void *ptr);
+
+#endif

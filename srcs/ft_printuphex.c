@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printft.h"
+#include "../ft_printf.h"
 
 int	ft_printuphex(unsigned int x)
 {

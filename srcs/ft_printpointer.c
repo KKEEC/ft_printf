@@ -10,21 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printft.h"
+#include "../ft_printf.h"
+
+int	ft_handlemaxptr(unsigned long nbr, int base)
+{
+	int		count;
+	char	*digithex;
+
+	digithex = "0123456789abcdef";
+	if (nbr < 0)
+	{
+		ft_printchar('-');
+		return (ft_printbasedigit(-nbr, base) + 1);
+	}
+	else if (nbr < (unsigned long)base)
+		return (ft_printchar(digithex[nbr]));
+	else
+	{
+		count = ft_printbasedigit(nbr / base, base);
+		return (count + ft_printbasedigit(nbr % base, base));
+	}
+}
 
 int	ft_printpointer(void *ptr)
 {
 	int	len;
 	len = 0;
-	unsigned long	point;
-	point = (unsigned long)ptr;
+	long	point;
+	point = (long)ptr;
 
 	if (ptr == 0)
 		return (ft_printstr("(nil)"));
 	else
 	{
 		len += ft_printstr("0x");
-		len += ft_printbasedigit(point, 16);
+		len += ft_handlemaxptr(point, 16);
 	}
 	return (len);
 

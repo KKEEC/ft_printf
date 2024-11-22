@@ -10,13 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printft.h"
+#include "../ft_printf.h"
 
 int	ft_printstr(char *str)
 {
 	int	i;
-
 	i = 0;
+	if (!str)
+	{
+		return write(1, "(null)", 6);
+	}
 	while (str[i] != '\0')
 	{
 		ft_printchar(str[i]);

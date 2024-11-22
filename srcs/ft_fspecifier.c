@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printft.h"
+#include "../ft_printf.h"
 
 int	ft_fspecifier(va_list args, const char fspecifier)
 {
@@ -21,14 +21,14 @@ int	ft_fspecifier(va_list args, const char fspecifier)
 		len += ft_printchar((char)va_arg(args, int));
 	else if (fspecifier == 's' || fspecifier == 'S')
 		len += ft_printstr((char *)va_arg(args, char *));
-	else if (fspecifier == 'd' || fspecifier == 'i' || fspecifier == 'u')
-		len += ft_printbasedigit(va_arg(args, int), 10);
-	else if (fspecifier == 'p')
-		len += ft_printpointer(va_arg(args, void *));
+	else if (fspecifier == 'd' || fspecifier == 'i')
+		len += ft_printbasedigit((long)va_arg(args, int), 10);
 	else if (fspecifier == 'u')
-		len += ft_printunsigned((unsigned long)va_arg(args, unsigned int));
+		len += ft_printbasedigit((long)va_arg(args, unsigned int), 10);
 	else if (fspecifier == 'x')
 		len += ft_printbasedigit((unsigned long)va_arg(args, unsigned int), 16);
+	else if (fspecifier == 'p')
+		len += ft_printpointer(va_arg(args, void *));
 	else if (fspecifier == 'X')
 		len += ft_printuphex((unsigned long)va_arg(args, unsigned int));
 	else if (fspecifier == '%')

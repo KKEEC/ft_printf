@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
+#include <limits.h>
 
 
 int	main(void)
@@ -31,6 +32,9 @@ int	main(void)
 	printf("ny string test: %s\n", "HELLO");
 	ft_printf("my string test; %s\n", "");
 	printf("ny string test: %s\n", "");
+	ft_printf(" NULL %s NULL \n", NULL);
+	printf(" NULL %s NULL \n", NULL);
+
 	printf("\n");
 	printf("\n");
 
@@ -59,8 +63,10 @@ int	main(void)
 	printf("ny pointer test: %p\n", str);
 	ft_printf("my pointer test; %p\n", vd);
 	printf("ny pointer test: %p\n", vd);
-	ft_printf("my pointer test; %p\n", NULL);
-	printf("ny pointer test: %p\n", NULL);
+	//ft_printf("my pointer test; %p\n", LONG_MIN);
+	printf("ny pointer test: %p\n", LONG_MIN);
+	//ft_printf("my pointer test; %p\n", LONG_MAX);
+	printf("ny pointer test: %p\n", LONG_MAX);
 	printf("\n");
 	printf("\n");
 
